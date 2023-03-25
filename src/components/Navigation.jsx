@@ -30,7 +30,7 @@ const Navigation = () => {
                             <div className="space-y-2 mt-4 flex flex-col">
                                 <Link className="link" to="dashboard/dashboard">Dashboard</Link>
                                 <Link className="link" to="dashboard/adminLogin">✔ AdminLogin</Link>
-                                <Link className="link" to="dashboard/assignment">Assignment</Link>
+                                <Link className="link" to="dashboard/assignment">✔ Assignment</Link>
                                 <Link className="link" to="dashboard/assignmentMark">AssignmentMark</Link>
                                 <Link className="link" to="dashboard/quizzes">Quizzes</Link>
                                 <Link className="link" to="dashboard/videos">✔ Videos</Link>
