@@ -1,6 +1,6 @@
 import React from 'react'
 import { Routes, Route } from 'react-router-dom'
-import { AdminLogin, Assignment, AssignmentMark, CoursePlayer, DashBoard, LeaderBorad, Quiz, Quizzes, StudentLogin, StudentRegistration, Videos } from './AllRoutes'
+import { AdminLogin, Assignments, AssignmentMark, CoursePlayer, DashBoard, LeaderBorad, Quiz, Quizzes, StudentLogin, StudentRegistration, Videos } from './AllRoutes'
 import Navigation from './components/Navigation'
 function App() {
   return (
@@ -16,7 +16,7 @@ function App() {
         {/* Admin Portal */}
         <Route path='/dashboard/dashboard' element={<DashBoard />} />
         <Route path='/dashboard/adminLogin' element={<AdminLogin />} />
-        <Route path='/dashboard/assignment' element={<Assignment />} />
+        <Route path='/dashboard/assignment' element={<Assignments />} />
         <Route path='/dashboard/assignmentMark' element={<AssignmentMark />} />
         <Route path='/dashboard/quizzes' element={<Quizzes />} />
         <Route path='/dashboard/videos' element={<Videos />} />
