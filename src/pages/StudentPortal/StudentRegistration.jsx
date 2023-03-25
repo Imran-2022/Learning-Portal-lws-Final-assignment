@@ -5,6 +5,7 @@ import { useRegisterMutation } from '../../features/auth/authApi';
 
 const StudentRegistration = () => {
 
+    const [role, setRole] = useState("student");
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -38,6 +39,7 @@ const StudentRegistration = () => {
                 name,
                 email,
                 password,
+                role
             });
         }
     };
