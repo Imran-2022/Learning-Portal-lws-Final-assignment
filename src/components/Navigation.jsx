@@ -18,9 +18,9 @@ const Navigation = () => {
                         <div className="bg-slate-900 p-4 border border-slate-700/80 rounded-md">
                             <h1 className="text-slate-100 font-bold text-xl">Student Portal</h1>
                             <div className="space-y-2 mt-4 flex flex-col">
-                                <Link className="link" to='studentPortal/coursePlayer'>Course Player</Link>
+                                <Link className="link" to='studentPortal/coursePlayer'>✔ Course Player</Link>
                                 <Link className="link" to='studentPortal/leaderBoard'>Leaderboard</Link>
-                                <Link className="link" to="studentPortal/quiz">Quiz</Link>
+                                <Link className="link" to="studentPortal/quiz">✔ Quiz</Link>
                                 <Link className="link" to="studentPortal/studentLogin">✔ StudentLogin</Link>
                                 <Link className="link" to="studentPortal/studentReistration">✔ StudentReistration</Link>
                             </div>
@@ -31,7 +31,7 @@ const Navigation = () => {
                                 <Link className="link" to="dashboard/dashboard">✔ Dashboard</Link>
                                 <Link className="link" to="dashboard/adminLogin">✔ AdminLogin</Link>
                                 <Link className="link" to="dashboard/assignment">✔ Assignment</Link>
-                                <Link className="link" to="dashboard/assignmentMark">AssignmentMark</Link>
+                                <Link className="link" to="dashboard/assignmentMark">✔ AssignmentMark</Link>
                                 <Link className="link" to="dashboard/quizzes">✔ Quizzes</Link>
                                 <Link className="link" to="dashboard/videos">✔ Videos</Link>
                             </div>

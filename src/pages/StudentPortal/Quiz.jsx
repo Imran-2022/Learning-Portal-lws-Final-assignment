@@ -1,7 +1,20 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
 import lwsL from '../../assets/image/learningportal.svg'
+import QuizDetails from '../../components/QuizDetails';
+import { useGetQuizzesQuery } from '../../features/adminPortal/quizzes/quizzesApi';
 
 const Quiz = () => {
+  const { quizId } = useParams()
+  const videoDetail = useSelector(state => state.videoDetails)
+
+  // need to get single video details by id  when refresh.
+
+  const { url, title, createdAt, description, id } = videoDetail?.videoDetails || {}
+  const { data: quiz } = useGetQuizzesQuery();
+  const allQuiz = quiz?.filter(dt => dt.video_id == quizId)
+
   return (
     <div>
       {/* <!-- Navigatin Bar. It contains Logo, Center Text And Save Progress Button at the end --> */}
@@ -26,69 +39,15 @@ const Quiz = () => {
       <section className="py-6 bg-primary">
         <div className="mx-auto max-w-7xl px-5 lg:px-0">
           <div className="mb-8">
-            <h1 className="text-2xl font-bold">Quizzes for "Debounce Function in JavaScript - JavaScript Job Interview question"
+            <h1 className="text-2xl font-bold">Quizzes for "{title}
             </h1>
             <p className="text-sm text-slate-200">Each question contains 5 Mark</p>
           </div>
           <div className="space-y-8 ">
-            <div className="quiz">
-              <h4 className="question">Quiz 1 - What is a Debounce function in JavaScript?</h4>
-              <form className="quizOptions">
-                {/* <!-- Option 1 --> */}
-                <label htmlFor="option1_q1">
-                  <input type="checkbox" id="option1_q1" />
-                  A function that is called after a certain time interval
-                </label>
-
-                {/* <!-- Option 2 --> */}
-                <label htmlFor="option2_q1">
-                  <input type="checkbox" id="option2_q1" />
-                  A function that is called after a certain time interval
-                </label>
-
-                {/* <!-- Option 3 --> */}
-                <label htmlFor="option3_q1">
-                  <input type="checkbox" id="option3_q1" />
-                  A function that is called after a certain time interval
-                </label>
-
-                {/* <!-- Option 4 --> */}
-                <label htmlFor="option4_q1">
-                  <input type="checkbox" id="option4_q1" />
-                  A function that is called after a certain time interval
-                </label>
-              </form>
-            </div>
-
-            <div className="quiz">
-              <h4 className="question">Quiz 2 - Which of the following is an example of a situation where you would use the
-                Debounce function?</h4>
-              <form className="quizOptions">
-                {/* <!-- Option 1 --> */}
-                <label htmlFor="option1_q2">
-                  <input type="checkbox" id="option1_q2" />
-                  A search bar where the results are displayed as you type.
-                </label>
-
-                {/* <!-- Option 2 --> */}
-                <label htmlFor="option2_q2">
-                  <input type="checkbox" id="option2_q2" />
-                  A button that performs an action when clicked.
-                </label>
-
-                {/* <!-- Option 3 --> */}
-                <label htmlFor="option3_q2">
-                  <input type="checkbox" id="option3_q2" />
-                  An animation that plays when a user hovers over an element.
-                </label>
-
-                {/* <!-- Option 4 --> */}
-                <label htmlFor="option4_q2">
-                  <input type="checkbox" id="option4_q2" />
-                  All of the above.
-                </label>
-              </form>
-            </div>
+            {
+              allQuiz?.map((dt,idx)=><QuizDetails key={dt.id} dt={dt} idx={idx}/>)
+            }
+            
           </div>
 
           <button

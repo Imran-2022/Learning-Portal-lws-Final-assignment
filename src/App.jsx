@@ -10,7 +10,7 @@ function App() {
         {/* Student Portal */}
         <Route path='/studentPortal/coursePlayer' element={<CoursePlayer />} />
         <Route path='/studentPortal/leaderBoard' element={<LeaderBorad />} />
-        <Route path='/studentPortal/quiz' element={<Quiz />} />
+        <Route path='/studentPortal/quiz/:quizId' element={<Quiz />} />
         <Route path='/studentPortal/studentLogin' element={<StudentLogin />} />
         <Route path='/studentPortal/studentReistration' element={<StudentRegistration />} />
         {/* Admin Portal */}

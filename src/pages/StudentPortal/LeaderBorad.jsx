@@ -1,7 +1,16 @@
 import React from 'react'
 import lwsL from '../../assets/image/learningportal.svg'
+import { useGetAssignmentMarksQuery } from '../../features/adminPortal/assignmentMarks/assignmentMarksApi'
+import { useGetquizMarksQuery } from '../../features/adminPortal/quizMark/quizMarkApi'
 
 function LeaderBorad() {
+   const {data:assignmentMarks}= useGetAssignmentMarksQuery()
+   const {data:quizMark}= useGetquizMarksQuery()
+   console.log('assignmentMarks');
+   console.log(assignmentMarks);
+   console.log('quiz marks');
+   console.log(quizMark);
+
     return (
         <div>
             <nav className="shadow-md">
