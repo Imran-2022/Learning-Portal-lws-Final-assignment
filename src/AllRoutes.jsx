@@ -1,6 +1,6 @@
 import AdminLogin from "./pages/Dashboard/AdminLogin";
 import Assignments from "./pages/Dashboard/Assignments";
-import AssignmentMark from "./pages/Dashboard/AssignmentMark";
+import AssignmentsMark from "./pages/Dashboard/AssignmentsMark";
 import DashBoard from "./pages/Dashboard/DashBoard";
 import Quizzes from "./pages/Dashboard/Quizzes";
 import Videos from "./pages/Dashboard/Videos";
@@ -11,4 +11,4 @@ import StudentLogin from "./pages/StudentPortal/StudentLogin";
 import StudentRegistration from "./pages/StudentPortal/StudentRegistration";
 
 
-export {CoursePlayer,LeaderBorad,Quiz,StudentLogin,StudentRegistration,AdminLogin,Assignments,AssignmentMark,DashBoard,Quizzes,Videos};
+export {CoursePlayer,LeaderBorad,Quiz,StudentLogin,StudentRegistration,AdminLogin,Assignments,AssignmentsMark,DashBoard,Quizzes,Videos};
