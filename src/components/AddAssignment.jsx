@@ -23,7 +23,6 @@ const AddAssignment = () => {
         const data={totalMark:marks,video_id,video_title,title:assignment};
         addAssignment(data);
     }
-
     useEffect(()=>{
         setVideo_id(videos?.[0].id)
         setVideo_title(videos?.[0].title)
