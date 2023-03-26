@@ -3,7 +3,7 @@ import { apiSlice } from "../../api/apiSlice";
 export const quizMarkApi = apiSlice.injectEndpoints({
     endpoints: (builder) => ({
         getquizMarks: builder.query({
-            query: (data) => '/assignmentMark',
+            query: (data) => '/quizMark',
             async onQueryStarted(arg, { queryFulfilled, dispatch }) {
                 // try {
                 //     const result = await queryFulfilled;

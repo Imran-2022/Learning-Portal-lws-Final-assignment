@@ -6,7 +6,7 @@ function App() {
   return (
     <div>
       <Routes>
-        <Route path='/' element={<Navigation />} />
+        <Route path='/' element={<StudentLogin />} />
         {/* Student Portal */}
         <Route path='/studentPortal/coursePlayer' element={<CoursePlayer />} />
         <Route path='/studentPortal/leaderBoard' element={<LeaderBorad />} />
@@ -14,8 +14,8 @@ function App() {
         <Route path='/studentPortal/studentLogin' element={<StudentLogin />} />
         <Route path='/studentPortal/studentReistration' element={<StudentRegistration />} />
         {/* Admin Portal */}
-        <Route path='/dashboard/dashboard' element={<DashBoard />} />
-        <Route path='/dashboard/adminLogin' element={<AdminLogin />} />
+        <Route path='/dashboard' element={<DashBoard />} />
+        <Route path='/admin' element={<AdminLogin />} />
         <Route path='/dashboard/assignment' element={<Assignments />} />
         <Route path='/dashboard/assignmentMark' element={<AssignmentsMark />} />
         <Route path='/dashboard/quizzes' element={<Quizzes />} />

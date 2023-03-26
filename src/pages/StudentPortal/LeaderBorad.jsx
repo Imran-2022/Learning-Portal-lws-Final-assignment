@@ -4,12 +4,11 @@ import { useGetAssignmentMarksQuery } from '../../features/adminPortal/assignmen
 import { useGetquizMarksQuery } from '../../features/adminPortal/quizMark/quizMarkApi'
 
 function LeaderBorad() {
-   const {data:assignmentMarks}= useGetAssignmentMarksQuery()
-   const {data:quizMark}= useGetquizMarksQuery()
-   console.log('assignmentMarks');
-   console.log(assignmentMarks);
-   console.log('quiz marks');
-   console.log(quizMark);
+
+   const {data:assignmentMarks}= useGetAssignmentMarksQuery();
+   const {data:quizMark}= useGetquizMarksQuery();
+   console.log('assignmentMarks',assignmentMarks);
+   console.log('quiz marks',quizMark);
 
     return (
         <div>
