@@ -45,7 +45,36 @@ export const quizzesApi = apiSlice.injectEndpoints({
                 }
             },
         }),
+        deleteQuiz: builder.mutation({
+            query: (id) => ({
+                url: `/quizzes/${id}`,
+                method: "DELETE",
+            }),
+
+            async onQueryStarted(id, { queryFulfilled, dispatch }) {
+
+                // Optimistic way start
+
+                const patchResult = dispatch(
+                    apiSlice.util.updateQueryData(
+                        'getQuizzes',
+                        undefined,
+                        (draft) => {
+                            return draft.filter(dt => dt.id != id)
+                        }
+                    )
+                )
+                try {
+                    await queryFulfilled;
+                } catch (err) {
+                    patchResult.undo();
+                }
+
+                // Optimistic way end
+
+            },
+        }),
     }),
 });
 
-export const { useGetQuizzesQuery,useAddQuizMutation } = quizzesApi;
+export const { useGetQuizzesQuery,useAddQuizMutation,useDeleteQuizMutation } = quizzesApi;
