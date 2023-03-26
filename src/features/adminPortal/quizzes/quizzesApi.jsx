@@ -15,7 +15,37 @@ export const quizzesApi = apiSlice.injectEndpoints({
                 // }
             },
         }),
+        addQuiz: builder.mutation({
+            query: (data) => ({
+                url: "/quizzes",
+                method: "POST",
+                body:data,
+            }),
+            async onQueryStarted(arg, { queryFulfilled, dispatch }) {
+                try {
+                    const result = await queryFulfilled;
+
+                    // start pessimistic way ->
+
+                    dispatch(
+                        apiSlice.util.updateQueryData(
+                            "getQuizzes",
+                            undefined,
+                            (draft) => {
+                                draft.push(result.data);
+                            }
+                        )
+                    )
+
+                    // end pessimistic way ->
+
+                } catch (err) {
+                    // do nothing
+
+                }
+            },
+        }),
     }),
 });
 
-export const { useGetQuizzesQuery } = quizzesApi;
+export const { useGetQuizzesQuery,useAddQuizMutation } = quizzesApi;

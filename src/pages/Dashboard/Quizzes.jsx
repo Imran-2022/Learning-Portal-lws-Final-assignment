@@ -1,5 +1,5 @@
 import React from 'react';
-import lwsL from '../../assets/image/learningportal.svg'
+import { Link } from 'react-router-dom';
 import AdminNav from '../../components/AdminNav';
 import Quizze from '../../components/Quizze';
 import { useGetQuizzesQuery } from '../../features/adminPortal/quizzes/quizzesApi';
@@ -21,7 +21,7 @@ const Quizzes = () => {
                 <div className="mx-auto max-w-full px-5 lg:px-20">
                     <div className="px-3 py-20 bg-opacity-10">
                         <div className="w-full flex">
-                            <button className="btn ml-auto">Add Quiz</button>
+                            <Link to='/dashboard/quizzes/add'  className="btn ml-auto"><button>Add Quiz</button></Link>
                         </div>
                         <div className="overflow-x-auto mt-4">
                             <table className="divide-y-1 text-base divide-gray-600 w-full">
