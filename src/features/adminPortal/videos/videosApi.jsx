@@ -14,6 +14,17 @@ export const vidoesApi = apiSlice.injectEndpoints({
                 }
             },
         }),
+        getVideo: builder.query({
+            query: (id) => `/videos/${id}`,
+            async onQueryStarted(arg, { queryFulfilled, dispatch }) {
+                try {
+                    const result = await queryFulfilled;
+                    // do anything !
+                } catch (err) {
+                    // do nothing
+                }
+            },
+        }),
         deleteVideo: builder.mutation({
             query: (id) => ({
                 url: `/videos/${id}`,
@@ -74,7 +85,42 @@ export const vidoesApi = apiSlice.injectEndpoints({
                 }
             },
         }),
+        updateVideo : builder.mutation({
+            query: ({ id, data }) => ({
+                url: `/videos/${id}`,
+                method: "PATCH",
+                body: data,
+            }),
+            async onQueryStarted({ id, data }, { queryFulfilled, dispatch }) {
+                try {
+                    const result = await queryFulfilled;
+
+                    // start pessimistic way ->
+
+                    dispatch(
+                        apiSlice.util.updateQueryData(
+                            "getVideos",
+                            undefined,
+                            (draft) => {
+                                return draft.map(dt => {
+                                    if (dt.id == id) {
+                                        return result.data;
+                                    }
+                                    return dt;
+                                })
+                            }
+                        )
+                    )
+
+                    // end pessimistic way ->
+
+                } catch (err) {
+                    // do nothing
+
+                }
+            },
+        }),
     }),
 });
 
-export const { useGetVideosQuery,useAddVideoMutation,useDeleteVideoMutation } = vidoesApi;
+export const { useGetVideosQuery,useAddVideoMutation,useDeleteVideoMutation,useGetVideoQuery,useUpdateVideoMutation } = vidoesApi;
