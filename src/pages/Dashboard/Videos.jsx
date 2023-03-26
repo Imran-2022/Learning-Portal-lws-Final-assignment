@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import AdminNav from '../../components/AdminNav';
 import Video from '../../components/Video';
 import { useGetVideosQuery } from '../../features/adminPortal/videos/videosApi';
@@ -20,7 +21,7 @@ const Videos = () => {
                 <div className="mx-auto max-w-full px-5 lg:px-20">
                     <div className="px-3 py-20 bg-opacity-10">
                         <div className="w-full flex">
-                            <button className="btn ml-auto">Add Video</button>
+                            <Link  className="btn ml-auto" to='/dashboard/videos/add'><button>Add Video</button></Link>
                         </div>
                         <div className="overflow-x-auto mt-4">
                             <table className="divide-y-1 text-base divide-gray-600 w-full">

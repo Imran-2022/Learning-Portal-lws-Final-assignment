@@ -1,6 +1,6 @@
 import React from 'react'
 import { Routes, Route } from 'react-router-dom'
-import { AdminLogin, Assignments, AssignmentsMark, CoursePlayer, DashBoard, LeaderBorad, Quiz, Quizzes, StudentLogin, StudentRegistration, Videos } from './AllRoutes'
+import { AddVideo, AdminLogin, Assignments, AssignmentsMark, CoursePlayer, DashBoard, LeaderBorad, Quiz, Quizzes, StudentLogin, StudentRegistration, Videos } from './AllRoutes'
 import Navigation from './components/Navigation'
 import useAuthCheck from './hooks/useAuthCheck'
 
@@ -29,6 +29,7 @@ function App() {
         <Route path='/dashboard/assignmentMark' element={<AssignmentsMark />} />
         <Route path='/dashboard/quizzes' element={<Quizzes />} />
         <Route path='/dashboard/videos' element={<Videos />} />
+        <Route path='/dashboard/videos/add' element={<AddVideo />} />
       </Routes>
     </div>
   )
