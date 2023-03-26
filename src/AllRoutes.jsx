@@ -1,5 +1,6 @@
 import AddQuiz from "./components/AddQuiz";
 import AddVideo from "./components/AddVideo";
+import EditQuiz from "./components/EditQuiz";
 import UpdateVideo from "./components/UpdateVideo";
 import AdminLogin from "./pages/Dashboard/AdminLogin";
 import Assignments from "./pages/Dashboard/Assignments";
@@ -14,4 +15,4 @@ import StudentLogin from "./pages/StudentPortal/StudentLogin";
 import StudentRegistration from "./pages/StudentPortal/StudentRegistration";
 
 
-export {CoursePlayer,LeaderBorad,Quiz,StudentLogin,StudentRegistration,AdminLogin,Assignments,AssignmentsMark,DashBoard,Quizzes,Videos,AddVideo,UpdateVideo,AddQuiz};
+export {CoursePlayer,LeaderBorad,Quiz,StudentLogin,StudentRegistration,AdminLogin,Assignments,AssignmentsMark,DashBoard,Quizzes,Videos,AddVideo,UpdateVideo,AddQuiz,EditQuiz};
