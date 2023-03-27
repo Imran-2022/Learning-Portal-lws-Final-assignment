@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import StudentNav from '../StudentNav';
 import { useGetSingleAssignmentQuery, useUpdateAssignmentMutation } from '../../features/adminPortal/assignments/assignmentApi'
 import useUser from '../../hooks/useUser';
@@ -9,7 +9,7 @@ const Assignments = () => {
     // console.log(user);
     const { assignmentId } = useParams();
     // console.log(assignmentId);
-    const [updateAssignment, {data, isSuccess: updateAssignmentTask }] = useUpdateAssignmentMutation();
+    const [updateAssignment, { data, isSuccess: updateAssignmentTask }] = useUpdateAssignmentMutation();
     const [addAssignmentMarks] = useAddAssignmentMarksMutation()
     const { data: singleAssignment } = useGetSingleAssignmentQuery(assignmentId)
     const { id, title, totalMark, video_id, video_title } = singleAssignment || {};
@@ -20,15 +20,8 @@ const Assignments = () => {
     const handleSubmitAssignment = (e) => {
         e.preventDefault();
         const data = { id, title, totalMark, video_id, video_title, student_id: user.id, student_name: user.name, assignment_id: assignmentId, mark: 0, status: 'pending', repo_link };
-        updateAssignment({ id: assignmentId, data }).unwrap().then((dt) =>addAssignmentMarks(data))
+        updateAssignment({ id: assignmentId, data }).unwrap().then((dt) => addAssignmentMarks(data))
     }
-
-    // useEffect(() => {
-    //     if (data) {
-    //         addAssignmentMarks(data)
-    //     }
-    // }, [data])
-
 
     return (
         <div>
@@ -57,29 +50,38 @@ const Assignments = () => {
                                     Your Solution Repo_link :
                                 </label>
                                 <div className="mt-2">
-                                    <input
-                                        value={repo_link}
-                                        onChange={(e) => setRepo_link(e.target.value)}
-                                        required
-                                        id="repo_link"
-                                        name="repo_link"
-                                        type="text"
-                                        className="block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400  focus:outline-none  sm:text-sm sm:leading-6"
-                                    />
+                                    {
+                                        (singleAssignment?.repo_link) ? <input
+                                            value={singleAssignment?.repo_link}
+                                            readOnly
+                                            id="repo_link"
+                                            name="repo_link"
+                                            type="text"
+                                            className="block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400  focus:outline-none  sm:text-sm sm:leading-6"
+                                        /> : <input
+                                            value={repo_link}
+                                            onChange={(e) => setRepo_link(e.target.value)}
+                                            required
+                                            id="repo_link"
+                                            name="repo_link"
+                                            type="text"
+                                            className="block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400  focus:outline-none  sm:text-sm sm:leading-6"
+                                        />
+                                    }
+
                                 </div>
                             </div>
 
                         </div>
                         <button disabled={singleAssignment?.status}
                             type="submit"
-                            className="rounded-md text-black mt-5 w-full py-2 px-3 border"
+                            className="rounded-md text-black mt-5 w-full py-2 px-3 border disabled:bg-red-600 disabled:text-white"
                         >
-                            Save
+                            {singleAssignment?.status ? "Already Assignment Submitted" : "Submit Your assignment"}
                         </button>
                     </div>
                 </form>
             </div>
-            <Link to='/dashboard/assignmentMark'>/dashboard/assignmentMark</Link>
         </div>
     );
 };

@@ -20,8 +20,8 @@ const VideoCard = ({ dt = {} }) => {
                     d="M15.91 11.672a.375.375 0 010 .656l-5.603 3.113a.375.375 0 01-.557-.328V8.887c0-.286.307-.466.557-.327l5.603 3.112z" />
             </svg>
             {/* <!-- Description --> */}
-            <div clas="flex flex-col w-full">
-                <div onClick={handleVideoDetails}>
+            <div clas="flex flex-col w-full " onClick={handleVideoDetails}>
+                <div >
                     <p className="text-slate-50 text-sm font-medium">{title}</p>
                 </div>
                 <div>
