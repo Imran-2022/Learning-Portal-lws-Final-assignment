@@ -89,7 +89,7 @@ export const vidoesApi = apiSlice.injectEndpoints({
             query: ({ id, data }) => ({
                 url: `/videos/${id}`,
                 method: "PATCH",
-                body: data,
+                body: {...data,createdAt:new Date(Date.now()).toISOString()},
             }),
             async onQueryStarted({ id, data }, { queryFulfilled, dispatch }) {
                 try {
