@@ -15,7 +15,7 @@ const AssignmentAndQuiz = ({video_id}) => {
     return (
         <div className="flex gap-4">
             {
-                isAssignmentAvailable && <Link to={`/studentPortal/assignment/${video_id}`} className="px-3 font-bold py-1 border border-cyan text-cyan rounded-full text-sm hover:bg-cyan hover:text-primary">এসাইনমেন্ট</Link>
+                isAssignmentAvailable && <Link to={`/studentPortal/assignment/${isAssignmentAvailable.id}`} className="px-3 font-bold py-1 border border-cyan text-cyan rounded-full text-sm hover:bg-cyan hover:text-primary">এসাইনমেন্ট</Link>
             }
             {
                 isQuizAvailable && <Link to={`/studentPortal/quiz/${video_id}`} className="px-3 font-bold py-1 border border-cyan text-cyan rounded-full text-sm hover:bg-cyan hover:text-primary">কুইজে অংশগ্রহণ করুন</Link>

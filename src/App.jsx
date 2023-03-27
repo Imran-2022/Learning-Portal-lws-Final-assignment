@@ -1,7 +1,7 @@
 import React from 'react'
 import { Routes, Route } from 'react-router-dom'
 import { AddAssignment, AddQuiz, AddVideo, AdminLogin, Assignments, AssignmentsMark, CoursePlayer, DashBoard, EditQuiz, LeaderBorad, Quiz, Quizzes, StudentLogin, StudentRegistration, UpdateVideo, Videos } from './AllRoutes'
-import Navigation from './components/Navigation'
+import AssignmentStatus from './components/students/Assignments'
 import UpdateAssignment from './components/UpdateAssignment'
 import useAuthCheck from './hooks/useAuthCheck'
 
@@ -21,6 +21,7 @@ function App() {
         <Route path='/studentPortal/coursePlayer' element={<CoursePlayer />} />
         <Route path='/studentPortal/leaderBoard' element={<LeaderBorad />} />
         <Route path='/studentPortal/quiz/:quizId' element={<Quiz />} />
+        <Route path='/studentPortal/assignment/:assignmentId' element={<AssignmentStatus />} />
         <Route path='/studentPortal/studentLogin' element={<StudentLogin />} />
         <Route path='/studentPortal/studentReistration' element={<StudentRegistration />} />
         {/* Admin Portal */}

@@ -121,7 +121,6 @@ export const assignmentApi = apiSlice.injectEndpoints({
                             }
                         )
                     )
-
                     // end pessimistic way ->
 
                 } catch (err) {

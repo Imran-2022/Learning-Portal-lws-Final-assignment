@@ -3,12 +3,21 @@ import { useSelector } from 'react-redux';
 import AssignmentAndQuiz from './AssignmentAndQuiz';
 
 const VideoDetails = () => {
-    const videoDetail= useSelector(state=>state.videoDetails)
-    const {url,title,createdAt,description,id}=videoDetail?.videoDetails||{}
+    const videoDetail = useSelector(state => state.videoDetails)
     
+    const { url, title, createdAt, description, id } = videoDetail?.videoDetails || {}
+
+    const videoId = url?.split('/').slice(-1).join()
+
     return (
         <div className="col-span-full w-full space-y-8 lg:col-span-2">
-            <iframe width="100%" className="aspect-video" src={url}
+            <iframe
+                onError={() => {
+                    console.log(`Failed to load YouTube video with URL: ${url}`);
+                }}
+                
+                width="100%" className="aspect-video" 
+                src={`https://www.youtube.com/embed/${videoId}`}
                 title="Things I wish I knew as a Junior Web Developer - Sumit Saha - BASIS SoftExpo 2023"
                 frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -22,10 +31,10 @@ const VideoDetails = () => {
                     Uploaded on {createdAt}</h2>
 
                 {
-                    <AssignmentAndQuiz video_id={id}/>
+                    <AssignmentAndQuiz video_id={id} />
                 }
                 <p className="mt-4 text-sm text-slate-400 leading-6">
-                   {description}
+                    {description}
                 </p>
             </div>
         </div>
