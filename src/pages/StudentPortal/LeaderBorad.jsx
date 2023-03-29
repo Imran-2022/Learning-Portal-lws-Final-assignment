@@ -3,17 +3,47 @@ import lwsL from '../../assets/image/learningportal.svg'
 import StudentNav from '../../components/StudentNav';
 import { useGetAssignmentMarksQuery } from '../../features/adminPortal/assignmentMarks/assignmentMarksApi'
 import { useGetquizMarksQuery } from '../../features/adminPortal/quizMark/quizMarkApi'
+import useUser from '../../hooks/useUser';
 
 function LeaderBorad() {
+    const user = useUser();
+    const { data: userAssignmentMakrs } = useGetAssignmentMarksQuery();
+    const { data: quizMark } = useGetquizMarksQuery();
 
-   const {data:assignmentMarks}= useGetAssignmentMarksQuery();
-   const {data:quizMark}= useGetquizMarksQuery();
-   console.log('assignmentMarks',assignmentMarks);
-   console.log('quiz marks',quizMark);
+    // const userAssignmentMakrs = assignmentMarks?.filter(dt => dt?.student_id == user.id)
+    // const userQuizMarks = quizMark?.filter(dt => dt?.student_id == user.id)
+
+    // console.log('assignmentMarks', userAssignmentMakrs);
+    // console.log('quiz marks', userQuizMarks);
+
+    
+    const userMap = {};
+
+    for (let i = 0; i < userAssignmentMakrs?.length; i++) {
+        const user = userAssignmentMakrs[i];
+        if (!userMap[user.student_id]) {
+            userMap[user.student_id] = [];
+        }
+        userMap[user.student_id].push(user);
+    }
+
+    console.log(userMap);
+
+    const userMapMark = {};
+
+    for (let i = 0; i < quizMark?.length; i++) {
+        const user = quizMark[i];
+        if (!userMapMark[user.student_id]) {
+            userMapMark[user.student_id] = [];
+        }
+        userMapMark[user.student_id].push(user);
+    }
+
+    console.log(userMapMark);
 
     return (
         <div>
-           <StudentNav/>
+            <StudentNav />
             <section className="py-6 bg-primary">
                 <div className="mx-auto max-w-7xl px-5 lg:px-0">
                     <div>
