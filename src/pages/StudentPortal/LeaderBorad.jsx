@@ -16,7 +16,7 @@ function LeaderBorad() {
     // console.log('assignmentMarks', userAssignmentMakrs);
     // console.log('quiz marks', userQuizMarks);
 
-    
+
     const userMap = {};
 
     for (let i = 0; i < userAssignmentMakrs?.length; i++) {
@@ -28,6 +28,18 @@ function LeaderBorad() {
     }
 
     console.log(userMap);
+
+    for (const property in userMap) {
+        console.log(userMap[property]?.[0].student_name);
+        let sum = userMap[property].reduce(function (accumulator, curValue) {
+
+            return accumulator + Number(curValue.mark)
+        
+        }, 0)
+        
+        console.log("assignmentMarks = ",sum)
+
+    }
 
     const userMapMark = {};
 
@@ -41,6 +53,17 @@ function LeaderBorad() {
 
     console.log(userMapMark);
 
+    for (const property in userMapMark) {
+        console.log(userMapMark[property]?.[0].student_name);
+        let sum = userMapMark[property].reduce(function (accumulator, curValue) {
+
+            return accumulator + Number(curValue.mark)
+        
+        }, 0)
+        
+        console.log("Quiz Marks = ",sum)
+
+    }
     return (
         <div>
             <StudentNav />
