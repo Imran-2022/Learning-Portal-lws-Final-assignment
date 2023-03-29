@@ -1,11 +1,21 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
 import lwsL from '../assets/image/learningportal.svg'
+import { userLoggedOut } from '../features/auth/authSlice';
 import useUser from '../hooks/useUser';
 
 const StudentNav = () => {
     const user =useUser();
-    // console.log(user);
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+
+    const handleLogOut = () => {
+        dispatch(userLoggedOut());
+        localStorage.removeItem('auth');
+        navigate("/");
+    }
+
     return (
         <nav className="shadow-md">
         <div className="max-w-7xl px-5 lg:px-0 mx-auto flex justify-between py-3">
@@ -13,7 +23,7 @@ const StudentNav = () => {
             <div className="flex items-center gap-3">
                 <Link to="/studentPortal/leaderBoard">Leaderboard</Link>
                 <h2 className="font-bold">{user?.name}</h2>
-                <button
+                <button onClick={handleLogOut}
                     className="flex gap-2 border border-cyan items-center px-4 py-1 rounded-full text-sm transition-all hover:bg-cyan ">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5"
                         stroke="currentColor" className="w-6 h-6">
