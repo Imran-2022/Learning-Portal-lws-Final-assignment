@@ -72,12 +72,13 @@ const Quiz = () => {
       setClickedOption(newSelectedAnswers);
     }
   }
+  
   return (
     <div>
       <StudentNav />
       {
         showResult ? (
-          <QuizResult score={score} totalScore={QuizData.length} tryAgain={resetAll} />
+          <QuizResult QuizData={QuizData} score={score} totalScore={QuizData.length} tryAgain={resetAll} />
         ) : <section className="py-6 bg-primary">
           <div className="mx-auto quiz max-w-7xl px-5 lg:px-0">
             <div className="mb-8">
