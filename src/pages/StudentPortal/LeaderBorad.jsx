@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import LeaderBoardCard from '../../components/LeaderBoardCard';
 import StudentNav from '../../components/StudentNav';
 import { useGetAssignmentMarksQuery } from '../../features/adminPortal/assignmentMarks/assignmentMarksApi'
 import { useGetquizMarksQuery } from '../../features/adminPortal/quizMark/quizMarkApi'
@@ -31,7 +32,7 @@ function LeaderBorad() {
 
         }, 0)
 
-        studentQuizMarks.push({ name: userMap[property]?.[0].student_name, sum_of_Quiz_mark: sum })
+        studentQuizMarks.push({ id: userMap[property]?.[0].student_id, sum_of_Quiz_mark: sum })
 
     }
 
@@ -54,7 +55,7 @@ function LeaderBorad() {
 
         }, 0)
 
-        studentAssignmentMarks.push({ name: userMapMark[property]?.[0].student_name, sum_of_Assignment_mark: sum })
+        studentAssignmentMarks.push({ id: userMapMark[property]?.[0].student_id, sum_of_Assignment_mark: sum })
 
     }
 
@@ -62,10 +63,27 @@ function LeaderBorad() {
     //  work here ........ 
 
     const studentUsers = allUsers?.filter(dt => dt.role == 'student')
-    console.log("all students",studentUsers);
-    console.log("all Quiz Marks",studentQuizMarks);
-    console.log("all Assignments Marks",studentAssignmentMarks);
+    // console.log("all students", studentUsers);
+    // console.log("all Quiz Marks", studentQuizMarks);
+    // console.log("all Assignments Marks", studentAssignmentMarks);
 
+
+    const mergedArray = studentUsers?.map(obj1 => {
+        const obj2 = studentQuizMarks.find(obj2 => obj2.id === obj1.id);
+        const obj3 = studentAssignmentMarks.find(obj3 => obj3.id === obj1.id);
+        return { ...obj1, ...obj2, ...obj3 };
+    });
+
+
+    const sortedArray = mergedArray?.sort((a, b) => ((b?.sum_of_Assignment_mark || 1) * (b?.sum_of_Quiz_mark || 1)) - ((a?.sum_of_Assignment_mark || 1) * (a?.sum_of_Quiz_mark || 1))).slice(0, 5);;
+    // console.log(sortedArray);
+
+
+    // only user Position - 
+
+    const userBoard = sortedArray?.find(dt => dt.id == user?.id)
+    const {name,sum_of_Quiz_mark,sum_of_Assignment_mark}=userBoard||{};
+    console.log(userBoard);
 
     return (
         <div>
@@ -86,13 +104,15 @@ function LeaderBorad() {
                             </thead>
 
                             <tbody>
+
                                 <tr className="border-2 border-cyan">
-                                    <td className="table-td text-center font-bold">4</td>
-                                    <td className="table-td text-center font-bold">Saad Hasan</td>
-                                    <td className="table-td text-center font-bold">50</td>
-                                    <td className="table-td text-center font-bold">50</td>
-                                    <td className="table-td text-center font-bold">100</td>
+                                    <td className="table-td text-center">{userBoard?.idx||0}</td>
+                                    <td className="table-td text-center">{name}</td>
+                                    <td className="table-td text-center">{sum_of_Quiz_mark || "-"}</td>
+                                    <td className="table-td text-center">{sum_of_Assignment_mark || "-"}</td>
+                                    <td className="table-td text-center">{(sum_of_Quiz_mark || 0) + (sum_of_Assignment_mark || 0)}</td>
                                 </tr>
+
                             </tbody>
                         </table>
                     </div>
@@ -111,53 +131,11 @@ function LeaderBorad() {
                             </thead>
 
                             <tbody>
-                                <tr className="border-b border-slate-600/50">
-                                    <td className="table-td text-center">4</td>
-                                    <td className="table-td text-center">Saad Hasan</td>
-                                    <td className="table-td text-center">50</td>
-                                    <td className="table-td text-center">50</td>
-                                    <td className="table-td text-center">100</td>
-                                </tr>
-
-                                <tr className="border-b border-slate-600/50">
-                                    <td className="table-td text-center">4</td>
-                                    <td className="table-td text-center">Saad Hasan</td>
-                                    <td className="table-td text-center">50</td>
-                                    <td className="table-td text-center">50</td>
-                                    <td className="table-td text-center">100</td>
-                                </tr>
-
-                                <tr className="border-b border-slate-600/50">
-                                    <td className="table-td text-center">4</td>
-                                    <td className="table-td text-center">Saad Hasan</td>
-                                    <td className="table-td text-center">50</td>
-                                    <td className="table-td text-center">50</td>
-                                    <td className="table-td text-center">100</td>
-                                </tr>
-
-                                <tr className="border-b border-slate-600/50">
-                                    <td className="table-td text-center">4</td>
-                                    <td className="table-td text-center">Saad Hasan</td>
-                                    <td className="table-td text-center">50</td>
-                                    <td className="table-td text-center">50</td>
-                                    <td className="table-td text-center">100</td>
-                                </tr>
-
-                                <tr className="border-b border-slate-600/50">
-                                    <td className="table-td text-center">4</td>
-                                    <td className="table-td text-center">Saad Hasan</td>
-                                    <td className="table-td text-center">50</td>
-                                    <td className="table-td text-center">50</td>
-                                    <td className="table-td text-center">100</td>
-                                </tr>
-
-                                <tr className="border-slate-600/50">
-                                    <td className="table-td text-center">4</td>
-                                    <td className="table-td text-center">Saad Hasan</td>
-                                    <td className="table-td text-center">50</td>
-                                    <td className="table-td text-center">50</td>
-                                    <td className="table-td text-center">100</td>
-                                </tr>
+                                {
+                                    sortedArray?.map((dt, idx) => {
+                                        return <LeaderBoardCard key={dt.id} dt={dt} idx={idx + 1} />
+                                    })
+                                }
                             </tbody>
                         </table>
                     </div>
