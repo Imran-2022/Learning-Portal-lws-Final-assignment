@@ -15,6 +15,20 @@ export const quizMarkApi = apiSlice.injectEndpoints({
                 // }
             },
         }),
+        // getquizMark: builder.query({
+        //     query: (id) => ({
+        //         url: `/quizMark/${id}`,
+        //     }),
+        //     async onQueryStarted(arg, { queryFulfilled, dispatch }) {
+        //         try {
+        //             const result = await queryFulfilled;
+
+        //         } catch (err) {
+        //             // do nothing
+
+        //         }
+        //     },
+        // }),
         addQuizMarks: builder.mutation({
             query: (data) => ({
                 url: "/quizMark",
@@ -37,6 +51,16 @@ export const quizMarkApi = apiSlice.injectEndpoints({
                         )
                     )
 
+                    // dispatch(
+                    //     apiSlice.util.updateQueryData(
+                    //         "getquizMark",
+                    //         arg.id,
+                    //         (draft) => {
+                    //             return result.data;
+                    //         }
+                    //     )
+                    // )
+
                     // end pessimistic way ->
 
                 } catch (err) {
@@ -48,4 +72,4 @@ export const quizMarkApi = apiSlice.injectEndpoints({
     }),
 });
 
-export const { useGetquizMarksQuery,useAddQuizMarksMutation } = quizMarkApi;
+export const { useGetquizMarksQuery, useAddQuizMarksMutation } = quizMarkApi;
