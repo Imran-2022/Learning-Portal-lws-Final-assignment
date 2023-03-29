@@ -1,21 +1,18 @@
-import React from 'react'
-import lwsL from '../../assets/image/learningportal.svg'
+import React, { useState } from 'react'
 import StudentNav from '../../components/StudentNav';
 import { useGetAssignmentMarksQuery } from '../../features/adminPortal/assignmentMarks/assignmentMarksApi'
 import { useGetquizMarksQuery } from '../../features/adminPortal/quizMark/quizMarkApi'
+import { useGetUsersQuery } from '../../features/auth/authApi';
 import useUser from '../../hooks/useUser';
 
 function LeaderBorad() {
     const user = useUser();
     const { data: userAssignmentMakrs } = useGetAssignmentMarksQuery();
     const { data: quizMark } = useGetquizMarksQuery();
+    const { data: allUsers } = useGetUsersQuery()
 
-    // const userAssignmentMakrs = assignmentMarks?.filter(dt => dt?.student_id == user.id)
-    // const userQuizMarks = quizMark?.filter(dt => dt?.student_id == user.id)
-
-    // console.log('assignmentMarks', userAssignmentMakrs);
-    // console.log('quiz marks', userQuizMarks);
-
+    const studentQuizMarks = []
+    const studentAssignmentMarks = []
 
     const userMap = {};
 
@@ -27,21 +24,19 @@ function LeaderBorad() {
         userMap[user.student_id].push(user);
     }
 
-    console.log(userMap);
-
     for (const property in userMap) {
-        console.log(userMap[property]?.[0].student_name);
         let sum = userMap[property].reduce(function (accumulator, curValue) {
 
             return accumulator + Number(curValue.mark)
-        
+
         }, 0)
-        
-        console.log("assignmentMarks = ",sum)
+
+        studentQuizMarks.push({ name: userMap[property]?.[0].student_name, sum_of_Quiz_mark: sum })
 
     }
 
     const userMapMark = {};
+
 
     for (let i = 0; i < quizMark?.length; i++) {
         const user = quizMark[i];
@@ -51,19 +46,27 @@ function LeaderBorad() {
         userMapMark[user.student_id].push(user);
     }
 
-    console.log(userMapMark);
 
     for (const property in userMapMark) {
-        console.log(userMapMark[property]?.[0].student_name);
         let sum = userMapMark[property].reduce(function (accumulator, curValue) {
 
             return accumulator + Number(curValue.mark)
-        
+
         }, 0)
-        
-        console.log("Quiz Marks = ",sum)
+
+        studentAssignmentMarks.push({ name: userMapMark[property]?.[0].student_name, sum_of_Assignment_mark: sum })
 
     }
+
+
+    //  work here ........ 
+
+    const studentUsers = allUsers?.filter(dt => dt.role == 'student')
+    console.log("all students",studentUsers);
+    console.log("all Quiz Marks",studentQuizMarks);
+    console.log("all Assignments Marks",studentAssignmentMarks);
+
+
     return (
         <div>
             <StudentNav />
