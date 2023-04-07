@@ -36,18 +36,34 @@ function QuizResult({ QuizData, score, totalScore, tryAgain, isSubmitted }) {
 
 
   return (
-    <div className=' w-8/12 m-auto py-12'>
-      <div className='show-score'>
-        {
-          isSubmitted&& <p className='text-center font-mono text-xs text-white py-8 underline underline-offset-4 bg-cyan-400 p-4'>Already Submitted  ! you have no permission to submit again , but you can visit through all quizes</p>
-        }
-        Your Score:{score}<br />
-        Total Score:{totalScore}
+    <div className='w-8/12 mx-auto py-12'>
+      {isSubmitted && (
+        <p className='text-center text-xs font-mono font-bold uppercase tracking-wide text-white bg-blue-500 px-4 py-3 '>
+          Already submitted! You cannot submit again, but you can visit all quizzes.
+        </p>
+      )}
+      <div className='bg-gray-100 p-4 text-black'>
+        <div className='text-center mb-6'>
+          <span className='block text-4xl font-bold'>{score*5}</span>
+          <span className='block text-sm'>Your correct answer: {score} / {totalScore}</span>
+        </div>
+        <div className='flex justify-center space-x-4'>
+          {/* <button 
+            id='try-again'
+            className='px-4 py-2 text-sm font-medium text-white bg-gray-600 rounded-lg focus:outline-none hover:bg-gray-700'
+            onClick={tryAgain}
+          >
+            Try Again
+          </button> */}
+          <button
+            className='bg-green-700 p-2 rounded-sm disabled:bg-black text-white'
+            disabled={isSubmitted} 
+            onClick={handleSubmitAssignment}
+          >
+            Submit Quiz
+          </button>
+        </div>
       </div>
-      <button id="next-button" onClick={tryAgain}>Try Again</button>
-      {
-        !isSubmitted  && <button type="button" class=" mx-8 py-2.5 px-5 mr-2 mb-2 text-sm font-medium  focus:outline-none  rounded-full border border-gray-200 bg-gray-100 text-white focus:z-10 focus:ring-2 focus:ring-gray-200" onClick={handleSubmitAssignment}>submit Assignment</button>
-      }
     </div>
   )
 }

@@ -9,7 +9,7 @@ import useUser from '../../hooks/useUser';
 const Quiz = () => {
   const user = useUser();
   const { quizId } = useParams()
-  const {data:allQuizMarks}=useGetquizMarksQuery();
+  const { data: allQuizMarks } = useGetquizMarksQuery();
   // need to get single video details by id  when refresh.
   const { data: quiz } = useGetQuizzesQuery();
   const QuizData = quiz?.filter(dt => dt.video_id == quizId)
@@ -33,11 +33,11 @@ const Quiz = () => {
 
   const updateScore = () => {
 
-    console.log("correctAnser",correctAnser);
-    console.log("clickedOption",clickedOption);
+    console.log("correctAnser", correctAnser);
+    console.log("clickedOption", clickedOption);
 
-    const isCorrectd = (writeAnswer, selectedAnswers)=> {
-      console.log(writeAnswer,selectedAnswers);
+    const isCorrectd = (writeAnswer, selectedAnswers) => {
+      console.log(writeAnswer, selectedAnswers);
       if (writeAnswer.length == selectedAnswers.length) {
         return writeAnswer.every((element, index) => {
           if (element === selectedAnswers[index]) {
@@ -46,10 +46,10 @@ const Quiz = () => {
           return false;
         });
       }
-    
+
       return false;
     }
-    if(isCorrectd(correctAnser, clickedOption)){
+    if (isCorrectd(correctAnser, clickedOption)) {
       setScore(score + 1);
     }
   }
@@ -76,10 +76,10 @@ const Quiz = () => {
     }
   }
 
-   // get all quiz marks -
+  // get all quiz marks -
 
-   const isSubmitted=allQuizMarks?.filter(dt=>dt.video_id==QuizData?.[0].video_id).map(obj => obj.student_id)?.includes(user.id);
-  
+  const isSubmitted = allQuizMarks?.filter(dt => dt.video_id == QuizData?.[0].video_id).map(obj => obj.student_id)?.includes(user.id);
+
   return (
     <div>
       <StudentNav />
@@ -92,33 +92,33 @@ const Quiz = () => {
           }
           <div className="mx-auto quiz max-w-7xl px-5 lg:px-0">
             <div className="mb-8">
-              <h1 className="text-2xl font-bold">Quizzes for "{QuizData?.[0].video_title}
-              </h1>
-              <p className="text-sm text-slate-200">Each question contains 5 Mark</p>
+              <h1 className="text-2xl font-bold">Quizzes for "{QuizData?.[0].video_title}</h1>
+              <p className="text-sm text-slate-200">Each question contains 5 marks</p>
             </div>
-            <div className="space-y-8 ">
-              <span className='text-sm' >{currentQuestion + 1}. </span>
-              <span className='question' >{QuizData?.[currentQuestion]?.question}</span>
+            <div className="space-y-8 p-4">
+              <span className="text-sm">{currentQuestion + 1}.</span>
+              <span className="question">{QuizData?.[currentQuestion]?.question}</span>
 
-              <div className='quizOptions'>
+              <div className="grid grid-cols-2 gap-4">
                 {QuizData?.[currentQuestion]?.options.map((option, i) => {
                   return (
                     <button
-                      // className="option-btn"
-                      className={`option-btn ${clickedOption.includes(i + 1)? "checked bg-red-400" : null
+                      className={`block px-4 py-2 rounded-md shadow-sm transition-colors duration-150 ${clickedOption.includes(i + 1) ? "bg-red-400 text-white" : "bg-white text-gray-800 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
                         }`}
                       key={i}
                       onClick={() => handleClick(option.id)}
                     >
                       {option.option}
                     </button>
-                  )
+                  );
                 })}
               </div>
-
             </div>
-            <input className='cursor-pointer' type="button" value="Next" id="next-button" onClick={changeQuestion} />
+            <div className='bg-green-500 m-4 mt-8 text-center cursor-pointer'  onClick={changeQuestion}>
+              <button className=" bg-green-500 text-white px-4 py-2 " type="button"  >Next</button>
+            </div>
           </div>
+
         </section>
       }
     </div>
