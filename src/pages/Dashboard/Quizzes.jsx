@@ -2,17 +2,25 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import AdminNav from '../../components/AdminNav';
 import Quizze from '../../components/Quizze';
+
+// Import the useGetQuizzesQuery hook to fetch quizzes from the API
 import { useGetQuizzesQuery } from '../../features/adminPortal/quizzes/quizzesApi';
 
 const Quizzes = () => {
+    // Use the useGetQuizzesQuery hook to fetch quizzes and get the API response
     const { data: quizzes, isLoading, isError, error } = useGetQuizzesQuery();
 
-    // decide what to render
+    // Decide what content to render based on the API response and loading state
     let content = null;
-    if (isLoading) content = <p>Loading....... wait & see</p>
-    if (!isLoading && isError) content = <p>sorry , you get an error</p>
-    if (!isLoading && !isError && quizzes?.length === 0) content = <p>NO quizzes Found !</p>
-    if (!isLoading && !isError && quizzes?.length > 0) content = quizzes.map(dt => <Quizze key={dt.id} dt={dt} />)
+    if (isLoading) {
+        content = <p>Loading....... wait & see</p>;
+    } else if (isError) {
+        content = <p>Sorry, you got an error</p>;
+    } else if (quizzes?.length === 0) {
+        content = <p>No quizzes found!</p>;
+    } else if (quizzes?.length > 0) {
+        content = quizzes.map((quiz) => <Quizze key={quiz.id} quiz={quiz} />);
+    }
 
     return (
         <div>
@@ -21,22 +29,27 @@ const Quizzes = () => {
                 <div className="mx-auto max-w-full px-5 lg:px-20">
                     <div className="px-3 py-20 bg-opacity-10">
                         <div className="w-full flex">
-                            <Link to='/dashboard/quizzes/add'  className="btn ml-auto"><button>Add Quiz</button></Link>
+                            {/* Add link to add quiz page */}
+                            <Link to="/dashboard/quizzes/add" className="btn ml-auto">
+                                <button>Add Quiz</button>
+                            </Link>
                         </div>
                         <div className="overflow-x-auto mt-4">
                             <table className="divide-y-1 text-base divide-gray-600 w-full">
                                 <thead>
                                     <tr>
+                                        {/* Add table header for quiz question */}
                                         <th className="table-th">Question</th>
+                                        {/* Add table header for quiz video */}
                                         <th className="table-th">Video</th>
+                                        {/* Add table header for actions */}
                                         <th className="table-th justify-center">Action</th>
                                     </tr>
                                 </thead>
 
                                 <tbody className="divide-y divide-slate-600/50">
-                                    {
-                                        content
-                                    }
+                                    {/* Render content based on API response and loading state */}
+                                    {content}
                                 </tbody>
                             </table>
                         </div>

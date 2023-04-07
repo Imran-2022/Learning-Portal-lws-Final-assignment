@@ -63,7 +63,7 @@ function LeaderBorad() {
     });
 
     // Sort students by their total mark and get top 20 students
-    const sortedArray = mergedArray?.sort((a, b) => (Number((b?.sum_of_Assignment_mark || 1)) + Number((b?.sum_of_Quiz_mark || 1))) - ((Number(a?.sum_of_Assignment_mark || 1)) + Number((a?.sum_of_Quiz_mark || 1)))).slice(0, 20);
+    const sortedArray = mergedArray?.sort((a, b) => (Number((b?.sum_of_Assignment_mark || 1)) + Number((b?.sum_of_Quiz_mark || 1))) - ((Number(a?.sum_of_Assignment_mark || 1)) + Number((a?.sum_of_Quiz_mark || 1))));
 
     // Group students with the same total mark together
     const mergedTotalArray = [];
@@ -77,7 +77,7 @@ function LeaderBorad() {
     });
 
     // Reverse the array and filter out empty arrays
-    const newA = mergedTotalArray?.filter(Boolean).reverse();
+    const newA = mergedTotalArray?.filter(Boolean).reverse().slice(0, 5);
 
     // Get the position of the current user in the leaderboard
     const userBoard = sortedArray?.find(dt => dt.id == user?.id)
