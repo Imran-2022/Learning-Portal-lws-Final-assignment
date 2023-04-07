@@ -73,25 +73,35 @@ function LeaderBorad() {
         const obj3 = studentAssignmentMarks.find(obj3 => obj3.id === obj1.id);
         return { ...obj1, ...obj2, ...obj3 };
     });
+    const sortedArray = mergedArray?.sort((a, b) => (Number((b?.sum_of_Assignment_mark || 1)) + Number((b?.sum_of_Quiz_mark || 1))) - ((Number(a?.sum_of_Assignment_mark || 1)) + Number((a?.sum_of_Quiz_mark || 1)))).slice(0, 20);
 
-
-    const sortedArray = mergedArray?.sort((a, b) => (Number((b?.sum_of_Assignment_mark || 1)) + Number((b?.sum_of_Quiz_mark || 1))) - ((Number(a?.sum_of_Assignment_mark || 1)) + Number((a?.sum_of_Quiz_mark || 1)))).slice(0, 5);;
-    // console.log(sortedArray);
-
+    const mergedTotalArray = [];
+    sortedArray?.forEach((item) => {
+        const totalValue = (Number(item?.sum_of_Assignment_mark || 0)) + Number((item?.sum_of_Quiz_mark || 0));
+        if (!mergedTotalArray[totalValue]) {
+            mergedTotalArray[totalValue] = [item];
+        } else {
+            mergedTotalArray[totalValue].push(item);
+        }
+    });
+    const newA=mergedTotalArray?.filter(Boolean).reverse();
+    // console.log(newA);
 
     // only user Position - 
 
     const userBoard = sortedArray?.find(dt => dt.id == user?.id)
-    const {name,sum_of_Quiz_mark,sum_of_Assignment_mark}=userBoard||{};
+    const { name, sum_of_Quiz_mark, sum_of_Assignment_mark } = userBoard || {};
     // console.log(userBoard);
 
     // user rank
 
-    let userRank=0;
-    sortedArray?.map((dt,idx)=>{
-        if(dt.id==user?.id){
-            userRank=idx+1;
-        }
+    let userRank = 0;
+    newA?.map((dt, idx) => {
+        return dt.map((d,ix)=>{
+            if (d.id == user?.id) {
+                userRank = idx + 1;
+            }
+        })
     })
 
     return (
@@ -115,7 +125,7 @@ function LeaderBorad() {
                             <tbody>
 
                                 <tr className="border-2 border-cyan">
-                                    <td className="table-td text-center">{userRank||0}</td>
+                                    <td className="table-td text-center">{userRank || 0}</td>
                                     <td className="table-td text-center">{name}</td>
                                     <td className="table-td text-center">{sum_of_Quiz_mark || "-"}</td>
                                     <td className="table-td text-center">{sum_of_Assignment_mark || "-"}</td>
@@ -141,8 +151,10 @@ function LeaderBorad() {
 
                             <tbody>
                                 {
-                                    sortedArray?.map((dt, idx) => {
-                                        return <LeaderBoardCard key={dt.id} dt={dt} idx={idx + 1} user={user} />
+                                    newA?.map((dt, idx) => {
+                                        return dt.map((d,ix)=>{
+                                            return <LeaderBoardCard key={d.id} d={d} ix={idx + 1} user={user} />
+                                        })
                                     })
                                 }
                             </tbody>
