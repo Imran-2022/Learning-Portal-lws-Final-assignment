@@ -31,10 +31,6 @@ function QuizResult({ QuizData, score, totalScore, tryAgain, isSubmitted }) {
     if (isSuccess) navigate('/studentPortal/leaderBoard')
   }, [isSuccess])
 
-
-
-
-
   return (
     <div className='w-8/12 mx-auto py-12'>
       {isSubmitted && (
