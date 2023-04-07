@@ -2,16 +2,14 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useGetAssignmentsQuery } from '../features/adminPortal/assignments/assignmentApi';
 import { useGetQuizzesQuery } from '../features/adminPortal/quizzes/quizzesApi';
+import useUser from '../hooks/useUser';
 
 const AssignmentAndQuiz = ({video_id}) => {
-   
+    const user=useUser();
     const {data:quiz}=useGetQuizzesQuery();
     const {data:assignments}=useGetAssignmentsQuery();
     const isQuizAvailable = quiz?.find(dt=>dt.video_id==video_id)
     const isAssignmentAvailable = assignments?.find(dt=>dt.video_id==video_id)
-    // console.log(isQuizAvailable,isAssignmentAvailable);
-
-
     return (
         <div className="flex gap-4">
             {

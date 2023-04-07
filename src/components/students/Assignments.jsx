@@ -15,13 +15,18 @@ const Assignments = () => {
     const { id, title, totalMark, video_id, video_title } = singleAssignment || {};
     const [repo_link, setRepo_link] = useState('')
 
-    // console.log(singleAssignment);
-
+    console.log(user.id);
     const handleSubmitAssignment = (e) => {
         e.preventDefault();
         const data = { id, title, totalMark, video_id, video_title, student_id: user.id, student_name: user.name, assignment_id: assignmentId, mark: 0, status: 'pending', repo_link };
-        updateAssignment({ id: assignmentId, data }).unwrap().then((dt) => addAssignmentMarks(data))
+        updateAssignment({ id: assignmentId, data }).unwrap().then((dt) => {
+            console.log(dt,"DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD");
+            addAssignmentMarks({title, totalMark, video_id, video_title, student_id: user.id, student_name: user.name, assignment_id: assignmentId, mark: 0, status: 'pending', repo_link})
+        })
     }
+
+    console.log(singleAssignment);
+    console.log(user);
 
     return (
         <div>
@@ -51,7 +56,7 @@ const Assignments = () => {
                                 </label>
                                 <div className="mt-2">
                                     {
-                                        (singleAssignment?.repo_link) ? <input
+                                        (singleAssignment?.student_id==user.id) ? <input
                                             value={singleAssignment?.repo_link}
                                             readOnly
                                             id="repo_link"
@@ -73,11 +78,11 @@ const Assignments = () => {
                             </div>
 
                         </div>
-                        <button disabled={singleAssignment?.status}
+                        <button disabled={singleAssignment?.student_id==user.id}
                             type="submit"
                             className="rounded-md text-black mt-5 w-full py-2 px-3 border disabled:bg-red-600 disabled:text-white"
                         >
-                            {singleAssignment?.status ? "Already Assignment Submitted" : "Submit Your assignment"}
+                            {singleAssignment?.student_id==user.id ? "Already Assignment Submitted" : "Submit Your assignment"}
                         </button>
                     </div>
                 </form>
