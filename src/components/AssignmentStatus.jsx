@@ -1,30 +1,46 @@
 import React, { useEffect, useState } from 'react';
 import { useGetAssignmentMarksQuery } from '../features/adminPortal/assignmentMarks/assignmentMarksApi';
+
 const AssignmentStatus = () => {
-    const { data: assignmentsMarks} = useGetAssignmentMarksQuery();
+  // Destructure the variables from the useGetAssignmentMarksQuery hook
+  const { data: assignmentsMarks } = useGetAssignmentMarksQuery();
 
-    const [total,setTotal]=useState(0)
-    const [pending,setPending]=useState(0)
-    const [markSent,setMarksent]=useState(0)
+  const [totalAssignments, setTotalAssignments] = useState(0);
+  const [pendingAssignments, setPendingAssignments] = useState(0);
+  const [markedAssignments, setMarkedAssignments] = useState(0);
 
-    useEffect(()=>{
-        if(assignmentsMarks){
-            setTotal(assignmentsMarks.length)
-            const statusPending= assignmentsMarks.filter(dt=>dt.status==='pending').length;
-            setPending(statusPending);
-            const markSentTotal=assignmentsMarks.length-statusPending;
-            setMarksent(markSentTotal)
-        }
+  useEffect(() => {
+    if (assignmentsMarks) {
+      // Set the total number of assignments
+      setTotalAssignments(assignmentsMarks.length);
 
-    },[assignmentsMarks])
+      // Calculate the number of pending assignments
+      const numPendingAssignments = assignmentsMarks.reduce((total, current) => {
+        return total + (current.status === 'pending' ? 1 : 0);
+      }, 0);
+      setPendingAssignments(numPendingAssignments);
 
-    return (
-        <ul className="assignment-status">
-            <li>Total <span>{total}</span></li>
-            <li>Pending <span>{pending}</span></li>
-            <li>Mark Sent <span>{markSent}</span></li>
-        </ul>
-    );
+      // Calculate the number of assignments that have been marked
+      const numMarkedAssignments = assignmentsMarks.reduce((total, current) => {
+        return total + (current.status !== 'pending' ? 1 : 0);
+      }, 0);
+      setMarkedAssignments(numMarkedAssignments);
+    }
+  }, [assignmentsMarks]);
+
+  return (
+    <ul className="assignment-status">
+      <li>
+        Total <span>{totalAssignments}</span>
+      </li>
+      <li>
+        Pending <span>{pendingAssignments}</span>
+      </li>
+      <li>
+        Mark Sent <span>{markedAssignments}</span>
+      </li>
+    </ul>
+  );
 };
 
 export default AssignmentStatus;

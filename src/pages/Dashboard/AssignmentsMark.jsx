@@ -4,6 +4,8 @@ import AssignmentMark from '../../components/AssignmentMark'
 import AdminNav from '../../components/AdminNav';
 import AssignmentStatus from '../../components/AssignmentStatus';
 const AssignmentsMark = () => {
+      // Destructure the variables from the useGetAssignmentMarksQuery hook
+      
     const { data: assignmentsMarks, isLoading, isError, error } = useGetAssignmentMarksQuery();
 
     // decide what to render
