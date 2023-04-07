@@ -53,6 +53,13 @@ const AddQuiz = () => {
         setVideo_title(myObject.title);
     };
 
+    useEffect(()=>{
+        if(videos){
+            setVideo_id(videos[0].id);
+            setVideo_title(videos[0].title);
+        }
+    },[videos])
+
     // Define a function to handle adding a new quiz
     const handleAddQuiz = (e) => {
         e.preventDefault();
