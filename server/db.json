@@ -321,6 +321,34 @@
       "repo_link": "dashboard/assignmentMark",
       "createdAt": "2023-04-08T16:17:58.536Z",
       "id": 10
+    },
+    {
+      "title": "demodddddddddddd",
+      "totalMark": "324",
+      "video_id": 3,
+      "video_title": "demo",
+      "student_id": 6,
+      "student_name": "Riyadh",
+      "assignment_id": 3,
+      "mark": "324",
+      "status": "published",
+      "repo_link": "dashboard/assignmentMark",
+      "createdAt": "2023-04-08T17:31:24.643Z",
+      "id": 11
+    },
+    {
+      "title": "another assignment here",
+      "totalMark": "100",
+      "video_id": 1,
+      "video_title": "Next.js 13 Crash Course | Learn How To Build Full Stack Apps!",
+      "student_id": 6,
+      "student_name": "Riyadh",
+      "assignment_id": 1,
+      "mark": "100",
+      "status": "published",
+      "repo_link": "dashboard/assignmentMark",
+      "createdAt": "2023-04-08T17:33:03.082Z",
+      "id": 12
     }
   ],
   "quizMark": [
@@ -407,6 +435,78 @@
       "mark": 5,
       "totalWrong": 0,
       "id": 7
+    },
+    {
+      "student_id": 6,
+      "student_name": "Riyadh",
+      "video_id": 3,
+      "video_title": "demo",
+      "totalQuiz": 1,
+      "totalCorrect": 1,
+      "totalMark": 5,
+      "mark": 5,
+      "totalWrong": 0,
+      "id": 8
+    },
+    {
+      "student_id": 6,
+      "student_name": "Riyadh",
+      "video_id": 1,
+      "video_title": "Next.js 13 Crash Course | Learn How To Build Full Stack Apps!",
+      "totalQuiz": 1,
+      "totalCorrect": 1,
+      "totalMark": 5,
+      "mark": 5,
+      "totalWrong": 0,
+      "id": 9
+    },
+    {
+      "student_id": 6,
+      "student_name": "Riyadh",
+      "video_id": 2,
+      "video_title": "Next.js 13 Crash Course ",
+      "totalQuiz": 1,
+      "totalCorrect": 0,
+      "totalMark": 5,
+      "mark": 0,
+      "totalWrong": 1,
+      "id": 10
+    },
+    {
+      "student_id": 7,
+      "student_name": "Arif",
+      "video_id": 1,
+      "video_title": "Next.js 13 Crash Course | Learn How To Build Full Stack Apps!",
+      "totalQuiz": 1,
+      "totalCorrect": 1,
+      "totalMark": 5,
+      "mark": 5,
+      "totalWrong": 0,
+      "id": 11
+    },
+    {
+      "student_id": 7,
+      "student_name": "Arif",
+      "video_id": 2,
+      "video_title": "Next.js 13 Crash Course ",
+      "totalQuiz": 1,
+      "totalCorrect": 1,
+      "totalMark": 5,
+      "mark": 5,
+      "totalWrong": 0,
+      "id": 12
+    },
+    {
+      "student_id": 7,
+      "student_name": "Arif",
+      "video_id": 3,
+      "video_title": "demo",
+      "totalQuiz": 1,
+      "totalCorrect": 1,
+      "totalMark": 5,
+      "mark": 5,
+      "totalWrong": 0,
+      "id": 13
     }
   ]
 }
