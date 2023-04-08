@@ -86,7 +86,7 @@ const UpdateAssignment = () => {
                                 Choose Video :
                             </label>
                             <div className="mt-2">
-                                <select
+                                <select disabled
                                     required
                                     onChange={(e) => handleSelectChange(e.target.value)}
                                     id="video_title"
