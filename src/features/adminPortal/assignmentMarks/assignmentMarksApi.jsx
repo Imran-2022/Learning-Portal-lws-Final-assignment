@@ -15,6 +15,17 @@ export const assignmentMarksApi = apiSlice.injectEndpoints({
                 // }
             },
         }),
+        getSingleAssignmentMarks: builder.query({
+            query: (id) => `/assignmentMark/${id}`,
+            async onQueryStarted(arg, { queryFulfilled, dispatch }) {
+                try {
+                    const result = await queryFulfilled;
+                    // do anything !
+                } catch (err) {
+                    // do nothing
+                }
+            },
+        }),
         updateAssignmentMarks: builder.mutation({
             query: ({ id, data }) => ({
                 url: `/assignmentMark/${id}`,
@@ -42,15 +53,15 @@ export const assignmentMarksApi = apiSlice.injectEndpoints({
                         )
                     )
 
-                    // dispatch(
-                    //     apiSlice.util.updateQueryData(
-                    //         "getSingleAssignment",
-                    //         id,
-                    //         (draft) => {
-                    //             return result.data;
-                    //         }
-                    //     )
-                    // )
+                    dispatch(
+                        apiSlice.util.updateQueryData(
+                            "getSingleAssignmentMarks",
+                            id,
+                            (draft) => {
+                                return result.data;
+                            }
+                        )
+                    )
 
                     // end pessimistic way ->
 
@@ -94,4 +105,4 @@ export const assignmentMarksApi = apiSlice.injectEndpoints({
     }),
 });
 
-export const { useGetAssignmentMarksQuery, useUpdateAssignmentMarksMutation, useAddAssignmentMarksMutation } = assignmentMarksApi;
+export const { useGetAssignmentMarksQuery, useUpdateAssignmentMarksMutation, useAddAssignmentMarksMutation,useGetSingleAssignmentMarksQuery } = assignmentMarksApi;
