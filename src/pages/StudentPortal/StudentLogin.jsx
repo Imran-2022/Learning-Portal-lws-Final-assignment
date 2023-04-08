@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import lwsL from '../../assets/image/learningportal.svg'
 import { useLoginMutation } from '../../features/auth/authApi';
 
@@ -64,19 +64,19 @@ const StudentLogin = () => {
                             </div>
                         </div>
 
-                        <div className="flex items-center justify-end">
-                            <div className="text-sm">
-                                <a href="#" className="font-medium text-violet-600 hover:text-violet-500">
-                                    Forgot your password?
-                                </a>
-                            </div>
-                        </div>
+                       
 
                         <div>
                             <button type="submit" disabled={isLoading}
                                 className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-violet-600 hover:bg-violet-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-violet-500">
                                 Sign in
                             </button>
+                        </div>
+                        <div>
+                            <Link to="/studentPortal/studentReistration" disabled={isLoading}
+                                className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-violet-600 hover:bg-violet-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-violet-500">
+                                Register here
+                            </Link>
                         </div>
                     </form>
                 </div>

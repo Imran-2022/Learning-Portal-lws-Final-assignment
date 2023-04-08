@@ -4,16 +4,6 @@ export const assignmentApi = apiSlice.injectEndpoints({
     endpoints: (builder) => ({
         getAssignments: builder.query({
             query: (data) => '/assignments',
-            async onQueryStarted(arg, { queryFulfilled, dispatch }) {
-                // try {
-                //     const result = await queryFulfilled;
-                //     dispatch(
-                //         addTasks(result.data)
-                //     );
-                // } catch (err) {
-                //     // do nothing
-                // }
-            },
         }),
         getSingleAssignment: builder.query({
             query: (id) => `/assignments/${id}`,

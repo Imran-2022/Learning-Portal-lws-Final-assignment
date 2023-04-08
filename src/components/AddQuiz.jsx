@@ -55,8 +55,8 @@ const AddQuiz = () => {
 
     useEffect(()=>{
         if(videos){
-            setVideo_id(videos[0].id);
-            setVideo_title(videos[0].title);
+            setVideo_id(videos[0]?.id);
+            setVideo_title(videos[0]?.title);
         }
     },[videos])
 
@@ -222,7 +222,7 @@ const AddQuiz = () => {
                         </div>
 
                         {/* Add a button to submit the form */}
-                        <button type="submit" className="rounded-md text-black mt-5 w-full py-2 px-3 border">
+                        <button disabled={!videos?.length} type="submit" className="rounded-md text-black mt-5 w-full py-2 px-3 border">
                             Save
                         </button>
                     </div>

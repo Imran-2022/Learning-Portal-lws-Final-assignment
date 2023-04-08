@@ -19,12 +19,14 @@ const CoursePlayer = () => {
             <StudentNav />
             <section className="py-6 bg-primary">
                 <div className="mx-auto max-w-7xl px-5 lg:px-0">
-                    <div className="grid grid-cols-3 gap-2 lg:gap-8">
-                        <VideoDetails />
-                        <div className="col-span-full lg:col-auto max-h-[570px] overflow-y-auto bg-secondary p-4 rounded-md border border-slate-50/10 divide-y divide-slate-600/30">
-                            {content}
-                        </div>
-                    </div>
+                    {
+                        videos?.length ? <div className="grid grid-cols-3 gap-2 lg:gap-8">
+                            <VideoDetails />
+                            <div className="col-span-full lg:col-auto max-h-[570px] overflow-y-auto bg-secondary p-4 rounded-md border border-slate-50/10 divide-y divide-slate-600/30">
+                                {content}
+                            </div>
+                        </div> : <p>No videos found yet !</p>
+                    }
                 </div>
             </section>
         </div>

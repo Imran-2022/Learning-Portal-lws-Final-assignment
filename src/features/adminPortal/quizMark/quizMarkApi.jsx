@@ -4,31 +4,8 @@ export const quizMarkApi = apiSlice.injectEndpoints({
     endpoints: (builder) => ({
         getquizMarks: builder.query({
             query: (data) => '/quizMark',
-            async onQueryStarted(arg, { queryFulfilled, dispatch }) {
-                // try {
-                //     const result = await queryFulfilled;
-                //     dispatch(
-                //         addTasks(result.data)
-                //     );
-                // } catch (err) {
-                //     // do nothing
-                // }
-            },
         }),
-        // getquizMark: builder.query({
-        //     query: (id) => ({
-        //         url: `/quizMark/${id}`,
-        //     }),
-        //     async onQueryStarted(arg, { queryFulfilled, dispatch }) {
-        //         try {
-        //             const result = await queryFulfilled;
-
-        //         } catch (err) {
-        //             // do nothing
-
-        //         }
-        //     },
-        // }),
+     
         addQuizMarks: builder.mutation({
             query: (data) => ({
                 url: "/quizMark",
@@ -50,16 +27,6 @@ export const quizMarkApi = apiSlice.injectEndpoints({
                             }
                         )
                     )
-
-                    // dispatch(
-                    //     apiSlice.util.updateQueryData(
-                    //         "getquizMark",
-                    //         arg.id,
-                    //         (draft) => {
-                    //             return result.data;
-                    //         }
-                    //     )
-                    // )
 
                     // end pessimistic way ->
 

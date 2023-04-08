@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import StudentNav from '../StudentNav';
 import useUser from '../../hooks/useUser';
 import { useGetSingleAssignmentQuery } from '../../features/adminPortal/assignments/assignmentApi';
@@ -7,13 +7,14 @@ import { assignmentMarksApi, useAddAssignmentMarksMutation, useGetSingleAssignme
 import { useDispatch } from 'react-redux';
 
 const Assignments = () => {
+    const navigate =useNavigate();
     const user = useUser();
     const { assignmentId } = useParams();
     const dispatch = useDispatch();
     const [addAssignmentMarks] = useAddAssignmentMarksMutation()
     // Get single assignment and assignment marks data using RTK Query hooks
     const { data: singleAssignment } = useGetSingleAssignmentQuery(assignmentId);
-    const { data: singleAssignmentMarks } = useGetSingleAssignmentMarksQuery(assignmentId);
+    const { data: singleAssignmentMarks } = useGetSingleAssignmentMarksQuery(user?.id);
 
     // Destructure assignment data for ease of use
     const { id, title, totalMark, video_id, video_title } = singleAssignment || {};
@@ -27,7 +28,6 @@ const Assignments = () => {
 
         // Create object with form data
         const data = {
-            id,
             title,
             totalMark,
             video_id,
@@ -41,9 +41,10 @@ const Assignments = () => {
         };
 
         // Call addAssignmentMarks mutation to add assignment marks to database
-        addAssignmentMarks({ id: assignmentId, ...data }).then(() => {
+        addAssignmentMarks({ id: user?.id, ...data }).then(() => {
             // Refetch the assignment marks query to get the updated data
-            dispatch(assignmentMarksApi.endpoints.getSingleAssignmentMarks.initiate(assignmentId));
+            dispatch(assignmentMarksApi.endpoints.getSingleAssignmentMarks.initiate(user?.id));
+            navigate('/studentPortal/coursePlayer')
         });
     };
 
@@ -107,8 +108,7 @@ const Assignments = () => {
                         <button
                             disabled={singleAssignmentMarks?.student_id == user.id}
                             type="submit"
-                            className="rounded-md text-black mt-5 w-full py-2                px-3 border disabled:bg-red-600 disabled:text-white"
-                        >
+                            className="rounded-md text-black mt-5 w-full py-2 px-3 border disabled:bg-red-600 disabled:text-white">
                             {singleAssignmentMarks?.student_id == user.id ? "Already Assignment Submitted" : "Submit Your assignment"}
                         </button>
                     </div>

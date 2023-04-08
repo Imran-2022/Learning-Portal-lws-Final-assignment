@@ -40,11 +40,7 @@ const AddAssignment = () => {
         addAssignment(data);
     };
 
-    // Setting default video data when videos are fetched from the API
-    useEffect(() => {
-        setVideo_id(videos?.[0].id);
-        setVideo_title(videos?.[0].title);
-    }, [videos]);
+  
 
     // Navigating to assignments dashboard after successful addition of assignment
     useEffect(() => {
@@ -55,6 +51,11 @@ const AddAssignment = () => {
     // videos that have no assignments 
     
     const uniqueVideos = videos?.filter(video => !assignments?.map(assn => assn.video_id).includes(video.id));
+      // Setting default video data when videos are fetched from the API
+      useEffect(() => {
+        setVideo_id(uniqueVideos?.[0]?.id);
+        setVideo_title(uniqueVideos?.[0]?.title);
+    }, [uniqueVideos]);
 
     return (
         <div>
@@ -127,7 +128,7 @@ const AddAssignment = () => {
                     </div>
 
                     {/* Save button */}
-                    <button type="submit" className="rounded-md text-black mt-5 w-full py-2 px-3 border">
+                    <button disabled={!uniqueVideos?.length} type="submit" className="rounded-md text-black mt-5 w-full py-2 px-3 border">
                         Save
                     </button>
                 </div>

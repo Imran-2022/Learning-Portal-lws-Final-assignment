@@ -4,29 +4,9 @@ export const quizzesApi = apiSlice.injectEndpoints({
     endpoints: (builder) => ({
         getQuizzes: builder.query({
             query: (data) => '/quizzes',
-            async onQueryStarted(arg, { queryFulfilled, dispatch }) {
-                // try {
-                //     const result = await queryFulfilled;
-                //     dispatch(
-                //         addTasks(result.data)
-                //     );
-                // } catch (err) {
-                //     // do nothing
-                // }
-            },
         }),
         getQuiz: builder.query({
             query: (id) => `/quizzes/${id}`,
-            async onQueryStarted(arg, { queryFulfilled, dispatch }) {
-                // try {
-                //     const result = await queryFulfilled;
-                //     dispatch(
-                //         addTasks(result.data)
-                //     );
-                // } catch (err) {
-                //     // do nothing
-                // }
-            },
         }),
         addQuiz: builder.mutation({
             query: (data) => ({
