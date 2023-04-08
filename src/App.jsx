@@ -21,8 +21,8 @@ function App() {
         {/* Student Portal */}
         <Route path='/studentPortal/coursePlayer' element={<PrivateRoute><CoursePlayer /></PrivateRoute>} />
         <Route path='/studentPortal/leaderBoard' element={<PrivateRoute><LeaderBorad /></PrivateRoute>} />
-        <Route path='/studentPortal/quiz/:quizId' element={<Quiz />} />
-        <Route path='/studentPortal/assignment/:assignmentId' element={<AssignmentStatus />} />
+        <Route path='/studentPortal/quiz/:quizId' element={<PrivateRoute><Quiz /></PrivateRoute>} />
+        <Route path='/studentPortal/assignment/:assignmentId' element={<PrivateRoute><AssignmentStatus /></PrivateRoute>} />
         <Route path='/studentPortal/studentLogin' element={<StudentLogin />} />
         <Route path='/studentPortal/studentReistration' element={<StudentRegistration />} />
         {/* Admin Portal */}

@@ -34,7 +34,7 @@ function QuizResult({ QuizData, score, totalScore, tryAgain, isSubmitted }) {
   return (
     <div className='w-8/12 mx-auto py-12'>
       {isSubmitted && (
-        <p className='text-center text-xs font-mono font-bold uppercase tracking-wide text-white bg-blue-500 px-4 py-3 '>
+        <p className=' w-8/12 m-auto mb-4  text-center text-xs font-mono font-bold uppercase tracking-wide text-white bg-blue-500 px-4 py-3 '>
           Already submitted! You cannot submit again, but you can visit all quizzes.
         </p>
       )}

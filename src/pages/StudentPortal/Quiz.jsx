@@ -88,7 +88,7 @@ const Quiz = () => {
           <QuizResult isSubmitted={isSubmitted} QuizData={QuizData} score={score} totalScore={QuizData.length} tryAgain={resetAll} />
         ) : <section className="py-6 bg-primary">
           {
-            isSubmitted && <p className='text-center font-mono text-xs text-white py-8 underline underline-offset-4 bg-cyan-400 p-4'>Already Submitted  ! you have no permission to submit again , but you can visit through all quizes</p>
+            isSubmitted && <p className=' w-8/12 m-auto mb-4 text-center font-mono text-xs text-white py-8 underline underline-offset-4 bg-cyan-400 p-4'>Already Submitted  ! you have no permission to submit again , but you can visit through all quizes</p>
           }
           <div className="mx-auto quiz max-w-7xl px-5 lg:px-0">
             <div className="mb-8">
