@@ -40,7 +40,7 @@ const Video = ({ data }) => {
         </svg>
 
         {/* Update icon */}
-        <Link to={`/dashboard/videos/update/${id}`}>
+        <Link to={`/admin/dashboard/videos/update/${id}`}>
           <svg
             fill="none"
             viewBox="0 0 24 24"

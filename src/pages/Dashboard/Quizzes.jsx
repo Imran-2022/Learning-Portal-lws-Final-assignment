@@ -30,7 +30,7 @@ const Quizzes = () => {
                     <div className="px-3 py-20 bg-opacity-10">
                         <div className="w-full flex">
                             {/* Add link to add quiz page */}
-                            <Link to="/dashboard/quizzes/add" className="btn ml-auto">
+                            <Link to="/admin/dashboard/quizzes/add" className="btn ml-auto">
                                 <button>Add Quiz</button>
                             </Link>
                         </div>

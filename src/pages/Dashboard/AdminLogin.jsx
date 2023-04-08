@@ -18,7 +18,7 @@ const AdminLogin = () => {
             setError(responseError.data);
         }
         if (data?.accessToken && data?.user) {
-            navigate("/dashboard");
+            navigate("/admin/dashboard");
         }
     }, [data, responseError, navigate]);
 

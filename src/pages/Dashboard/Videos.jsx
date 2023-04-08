@@ -28,7 +28,7 @@ const Videos = () => {
                     <div className="px-3 py-20 bg-opacity-10">
                         <div className="w-full flex">
                             {/* Link to the "Add Video" page */}
-                            <Link className="btn ml-auto" to="/dashboard/videos/add">
+                            <Link className="btn ml-auto" to="/admin/dashboard/videos/add">
                                 <button>Add Video</button>
                             </Link>
                         </div>

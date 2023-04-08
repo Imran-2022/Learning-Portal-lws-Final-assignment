@@ -75,6 +75,15 @@
       "duration": "33",
       "createdAt": "2023-04-08T09:58:02.619Z",
       "id": 2
+    },
+    {
+      "title": "demo",
+      "description": "demo",
+      "url": "https://www.youtube.com/watch?v=zt6bKCcoTSY",
+      "views": "23",
+      "duration": "32",
+      "createdAt": "2023-04-08T16:16:32.919Z",
+      "id": 3
     }
   ],
   "assignments": [
@@ -91,6 +100,13 @@
       "video_title": "Next.js 13 Crash Course ",
       "title": "another assignment hered",
       "id": 2
+    },
+    {
+      "totalMark": "324",
+      "video_id": 3,
+      "video_title": "demo",
+      "title": "demodddddddddddd",
+      "id": 3
     }
   ],
   "quizzes": [
@@ -149,6 +165,34 @@
         }
       ],
       "id": 2
+    },
+    {
+      "question": "demo Question here",
+      "video_id": 3,
+      "video_title": "demo",
+      "options": [
+        {
+          "id": 1,
+          "option": "1",
+          "isCorrect": false
+        },
+        {
+          "id": 2,
+          "option": "2 right q",
+          "isCorrect": true
+        },
+        {
+          "id": 3,
+          "option": "3",
+          "isCorrect": false
+        },
+        {
+          "id": 4,
+          "option": "4",
+          "isCorrect": false
+        }
+      ],
+      "id": 3
     }
   ],
   "assignmentMark": [
@@ -263,6 +307,20 @@
       "repo_link": "dashboard/assignmentMark",
       "createdAt": "2023-04-08T14:04:38.998Z",
       "id": 9
+    },
+    {
+      "title": "demodddddddddddd",
+      "totalMark": "324",
+      "video_id": 3,
+      "video_title": "demo",
+      "student_id": 8,
+      "student_name": "Md Imranul Haque",
+      "assignment_id": 3,
+      "mark": "324",
+      "status": "published",
+      "repo_link": "dashboard/assignmentMark",
+      "createdAt": "2023-04-08T16:17:58.536Z",
+      "id": 10
     }
   ],
   "quizMark": [
@@ -337,6 +395,18 @@
       "mark": 5,
       "totalWrong": 0,
       "id": 6
+    },
+    {
+      "student_id": 8,
+      "student_name": "Md Imranul Haque",
+      "video_id": 3,
+      "video_title": "demo",
+      "totalQuiz": 1,
+      "totalCorrect": 1,
+      "totalMark": 5,
+      "mark": 5,
+      "totalWrong": 0,
+      "id": 7
     }
   ]
 }

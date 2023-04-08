@@ -35,7 +35,7 @@ const Assignments = () => {
           <div className="px-3 py-20 bg-opacity-10">
             <div className="w-full flex">
               {/* Add a link to the "Add Assignment" page */}
-              <Link to="/dashboard/assignment/add" className="btn ml-auto"><button>Add Assignment</button></Link>
+              <Link to="/admin/dashboard/assignment/add" className="btn ml-auto"><button>Add Assignment</button></Link>
             </div>
 
             <div className="overflow-x-auto mt-4">

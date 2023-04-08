@@ -18,7 +18,7 @@ const AdminNav = () => {
     return (
         <nav className="shadow-md">
             <div className="max-w-7xl px-5 lg:px-0 mx-auto flex justify-between py-3">
-                <Link to='/dashboard'> <img className="h-10" src={lwsL} /></Link>
+                <Link to='/admin/dashboard'> <img className="h-10" src={lwsL} /></Link>
                 <div className="flex items-center gap-3">
                     {
                         user.role === 'admin' && <h2 className="font-bold text-white">( ${user.name} ) Admin</h2>

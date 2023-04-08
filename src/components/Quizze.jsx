@@ -39,7 +39,7 @@ const Quizze = ({ quiz = {} }) => {
           />
         </svg>
         {/* Render a link to the quiz update page with an edit button icon */}
-        <Link to={`/dashboard/quizzes/update/${id}`}>
+        <Link to={`/admin/dashboard/quizzes/update/${id}`}>
           <svg
             fill="none"
             viewBox="0 0 24 24"

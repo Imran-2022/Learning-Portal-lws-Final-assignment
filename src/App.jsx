@@ -26,18 +26,18 @@ function App() {
         <Route path='/studentPortal/studentLogin' element={<StudentLogin />} />
         <Route path='/studentPortal/studentReistration' element={<StudentRegistration />} />
         {/* Admin Portal */}
-        <Route path='/dashboard' element={<PrivateRouteAdmin><DashBoard /></PrivateRouteAdmin>} />
+        <Route path='/admin/dashboard' element={<PrivateRouteAdmin><DashBoard /></PrivateRouteAdmin>} />
         <Route path='/admin' element={<AdminLogin />} />
-        <Route path='/dashboard/assignment' element={<PrivateRouteAdmin><Assignments /></PrivateRouteAdmin>} />
-        <Route path='/dashboard/assignment/update/:updateAssignmentId' element={<PrivateRouteAdmin><UpdateAssignment /></PrivateRouteAdmin>} />
-        <Route path='/dashboard/assignment/add' element={<PrivateRouteAdmin><AddAssignment /></PrivateRouteAdmin>} />
-        <Route path='/dashboard/assignmentMark' element={<PrivateRouteAdmin><AssignmentsMark /></PrivateRouteAdmin>} />
-        <Route path='/dashboard/quizzes' element={<PrivateRouteAdmin><Quizzes /></PrivateRouteAdmin>} />
-        <Route path='/dashboard/videos' element={<PrivateRouteAdmin><Videos /></PrivateRouteAdmin>} />
-        <Route path='/dashboard/videos/add' element={<PrivateRouteAdmin><AddVideo /></PrivateRouteAdmin>} />
-        <Route path='/dashboard/quizzes/add' element={<PrivateRouteAdmin><AddQuiz /></PrivateRouteAdmin>} />
-        <Route path='/dashboard/quizzes/update/:updateQuizId' element={<PrivateRouteAdmin><EditQuiz /></PrivateRouteAdmin>} />
-        <Route path='/dashboard/videos/update/:updateVideoId' element={<PrivateRouteAdmin><UpdateVideo /></PrivateRouteAdmin>} />
+        <Route path='/admin/dashboard/assignment' element={<PrivateRouteAdmin><Assignments /></PrivateRouteAdmin>} />
+        <Route path='/admin/dashboard/assignment/update/:updateAssignmentId' element={<PrivateRouteAdmin><UpdateAssignment /></PrivateRouteAdmin>} />
+        <Route path='/admin/dashboard/assignment/add' element={<PrivateRouteAdmin><AddAssignment /></PrivateRouteAdmin>} />
+        <Route path='/admin/dashboard/assignmentMark' element={<PrivateRouteAdmin><AssignmentsMark /></PrivateRouteAdmin>} />
+        <Route path='/admin/dashboard/quizzes' element={<PrivateRouteAdmin><Quizzes /></PrivateRouteAdmin>} />
+        <Route path='/admin/dashboard/videos' element={<PrivateRouteAdmin><Videos /></PrivateRouteAdmin>} />
+        <Route path='/admin/dashboard/videos/add' element={<PrivateRouteAdmin><AddVideo /></PrivateRouteAdmin>} />
+        <Route path='/admin/dashboard/quizzes/add' element={<PrivateRouteAdmin><AddQuiz /></PrivateRouteAdmin>} />
+        <Route path='/admin/dashboard/quizzes/update/:updateQuizId' element={<PrivateRouteAdmin><EditQuiz /></PrivateRouteAdmin>} />
+        <Route path='/admin/dashboard/videos/update/:updateVideoId' element={<PrivateRouteAdmin><UpdateVideo /></PrivateRouteAdmin>} />
       </Routes>
     </div>
   )

@@ -30,7 +30,7 @@ const Assignment = ({ dt = {} }) => {
         </svg>
 
         {/* Render update button */}
-        <Link to={`/dashboard/assignment/update/${id}`}>
+        <Link to={`/admin/dashboard/assignment/update/${id}`}>
           <svg fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor"
               className="w-6 h-6 hover:text-blue-500 cursor-pointer transition-all">
             <path strokeLinecap="round" strokeLinejoin="round"
