@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 // Importing API hooks
-import { useAddAssignmentMutation } from '../features/adminPortal/assignments/assignmentApi';
+import { useAddAssignmentMutation, useGetAssignmentsQuery } from '../features/adminPortal/assignments/assignmentApi';
 import { useGetVideosQuery } from '../features/adminPortal/videos/videosApi';
 
 // Importing components
@@ -17,6 +17,8 @@ const AddAssignment = () => {
 
     // Getting video data from the API
     const { data: videos } = useGetVideosQuery();
+    const { data: assignments } = useGetAssignmentsQuery();
+
 
     // Initializing mutation hook for adding assignments
     const [addAssignment, { isSuccess }] = useAddAssignmentMutation();
@@ -48,6 +50,11 @@ const AddAssignment = () => {
     useEffect(() => {
         if (isSuccess) navigate('/dashboard/assignment');
     }, [isSuccess]);
+
+
+    // videos that have no assignments 
+    
+    const uniqueVideos = videos?.filter(video => !assignments?.map(assn => assn.video_id).includes(video.id));
 
     return (
         <div>
@@ -90,8 +97,8 @@ const AddAssignment = () => {
                                     className="block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400  focus:outline-none  sm:text-sm sm:leading-6"
                                 >
                                     {/* Mapping through video data to create options in select box */}
-                                    {videos &&
-                                        videos.map((dt) => (
+                                    {uniqueVideos &&
+                                        uniqueVideos.map((dt) => (
                                             <option value={JSON.stringify(dt)} key={dt.id}>
                                                 {dt.title}
                                             </option>
