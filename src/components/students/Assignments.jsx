@@ -3,18 +3,17 @@ import { useNavigate, useParams } from 'react-router-dom';
 import StudentNav from '../StudentNav';
 import useUser from '../../hooks/useUser';
 import { useGetSingleAssignmentQuery } from '../../features/adminPortal/assignments/assignmentApi';
-import { assignmentMarksApi, useAddAssignmentMarksMutation, useGetSingleAssignmentMarksQuery } from '../../features/adminPortal/assignmentMarks/assignmentMarksApi';
+import { useAddAssignmentMarksMutation, useGetAssignmentMarksQuery, useGetSingleAssignmentMarksQuery } from '../../features/adminPortal/assignmentMarks/assignmentMarksApi';
 import { useDispatch } from 'react-redux';
 
 const Assignments = () => {
-    const navigate =useNavigate();
+    const navigate = useNavigate();
     const user = useUser();
     const { assignmentId } = useParams();
-    const dispatch = useDispatch();
     const [addAssignmentMarks] = useAddAssignmentMarksMutation()
     // Get single assignment and assignment marks data using RTK Query hooks
     const { data: singleAssignment } = useGetSingleAssignmentQuery(assignmentId);
-    const { data: singleAssignmentMarks } = useGetSingleAssignmentMarksQuery(user?.id);
+    const { data: allAssignmentsMarks } = useGetAssignmentMarksQuery();
 
     // Destructure assignment data for ease of use
     const { id, title, totalMark, video_id, video_title } = singleAssignment || {};
@@ -41,13 +40,18 @@ const Assignments = () => {
         };
 
         // Call addAssignmentMarks mutation to add assignment marks to database
-        addAssignmentMarks({ id: user?.id, ...data }).then(() => {
-            // Refetch the assignment marks query to get the updated data
-            dispatch(assignmentMarksApi.endpoints.getSingleAssignmentMarks.initiate(user?.id));
-            navigate('/studentPortal/coursePlayer')
-        });
+        addAssignmentMarks(data)
+        navigate('/studentPortal/coursePlayer')
+
     };
 
+    const isSubmitted = allAssignmentsMarks?.filter(dt => dt.video_id == singleAssignment?.video_id).map(obj =>{
+        if( obj.student_id==user.id){
+            return obj;
+        }
+        return null;
+    }).find(nm=>nm);
+    console.log(isSubmitted);
     return (
         <div>
             <StudentNav />
@@ -78,10 +82,10 @@ const Assignments = () => {
                                     Your Solution Repo_link :
                                 </label>
                                 <div className="mt-2">
-                                    {singleAssignmentMarks?.student_id == user.id ? (
+                                    {isSubmitted ? (
                                         // If assignment has already been submitted, display the repo link as read-only
                                         <input
-                                            value={singleAssignmentMarks?.repo_link}
+                                            value={isSubmitted?.repo_link}
                                             readOnly
                                             id="repo_link"
                                             name="repo_link"
@@ -106,10 +110,10 @@ const Assignments = () => {
 
                         {/* Submit button */}
                         <button
-                            disabled={singleAssignmentMarks?.student_id == user.id}
+                            disabled={isSubmitted}
                             type="submit"
                             className="rounded-md text-black mt-5 w-full py-2 px-3 border disabled:bg-red-600 disabled:text-white">
-                            {singleAssignmentMarks?.student_id == user.id ? "Already Assignment Submitted" : "Submit Your assignment"}
+                            {isSubmitted? "Already Assignment Submitted" : "Submit Your assignment"}
                         </button>
                     </div>
                 </form>
