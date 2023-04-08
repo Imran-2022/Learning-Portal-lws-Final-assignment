@@ -77,7 +77,7 @@ function LeaderBorad() {
     });
 
     // Reverse the array and filter out empty arrays
-    const newA = mergedTotalArray?.filter(Boolean).reverse().slice(0, 5);
+    const newA = mergedTotalArray?.filter(Boolean).reverse();
 
     // Get the position of the current user in the leaderboard
     const userBoard = sortedArray?.find(dt => dt.id == user?.id)
@@ -141,7 +141,7 @@ function LeaderBorad() {
 
                             <tbody>
                                 {
-                                    newA.flatMap((dt, idx) => dt?.map((d, ix) => (
+                                    newA.slice(0, 20).flatMap((dt, idx) => dt?.map((d, ix) => (
                                         <LeaderBoardCard key={d.id} data={d} rank={idx + 1} user={user} />
                                     )) || [])
                                 }
